@@ -1,4 +1,5 @@
 import classes from "./classes";
+import { createRooms, eachRoomDuration, viewerCount } from "./GlobalVariables";
 import methods from "./methods";
 
 describe("empty spec", () => {
@@ -53,7 +54,7 @@ describe("empty spec", () => {
       });
     };
 
-    for (let i = 0; i <= 20; i++) {
+    for (let i = 0; i <= createRooms; i++) {
       cy.visit("https://q-host.togee.io");
       roomSelection();
       cy.wait(6 * 1000);
@@ -76,8 +77,10 @@ describe("empty spec", () => {
 
       // cy.get(`.${classes.screenShare}`).click();
 
-      openViewer();
-      cy.wait(2 * 60 * 1000);
+      for (let k = 0; k < viewerCount; k++) {
+        openViewer();
+      }
+      cy.wait(eachRoomDuration);
       endRoom();
     }
   });
