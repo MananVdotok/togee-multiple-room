@@ -1,6 +1,27 @@
 {
   "dependencies": {
-    "cypress": "^10.9.0",
     "cypress-browser-permissions": "^1.1.0"
-  }
+  },
+  "name": "camera-cypress",
+  "description": "step #1",
+  "version": "1.0.0",
+  "main": "cypress.config.js",
+  "devDependencies": {
+    "cypress": "^11.2.0"
+  },
+  "scripts": {
+    "test": "cypress run",
+    "start": "npm run test -- --headed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manan-at-norgic/togee-multiple-room.git"
+  },
+  "keywords": [],
+  "author": "mananbari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manan-at-norgic/togee-multiple-room/issues"
+  },
+  "homepage": "https://github.com/manan-at-norgic/togee-multiple-room#readme"
 }
