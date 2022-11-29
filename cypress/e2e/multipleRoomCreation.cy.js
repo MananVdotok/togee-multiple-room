@@ -2,7 +2,7 @@ import classes from "./classes";
 import { createRooms, eachRoomDuration, viewerCount } from "./GlobalVariables";
 import methods from "./methods";
 
-describe("empty spec", () => {
+describe("mySpec multiple room Creation", () => {
   it("passes", () => {
     const endRoom = () => {
       cy.get(`.${classes.endRoom}`).click({ force: true });

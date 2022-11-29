@@ -10,8 +10,8 @@
     "cypress": "^11.2.0"
   },
   "scripts": {
-    "test": "cypress run",
-    "start": "npm run test -- --headed"
+    "test": "npm run start --record --spec \"cypress/e2e/multipleRoomcreation.cy.js/*\" -- --headed",
+    "start": "cypress run"
   },
   "repository": {
     "type": "git",
