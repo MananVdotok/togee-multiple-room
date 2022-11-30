@@ -3,6 +3,7 @@
   "email": "hello@cypress.io",
   "body": "Fixtures are a great way to mock data for responses to routes",
   "env": {
+    "Site": "",
     "browserPermissions": {
       "notifications": "allow",
       "geolocation": "allow",
@@ -14,5 +15,15 @@
       "plugins": "allow",
       "cookies": "allow"
     }
-  }
+  },
+
+  "reporter": "cypress-mochawesome-reporter",
+  "reporterOptions": {
+    "reporterDir": "cypress/reports",
+    "charts": true,
+    "reportPageTitle": "my test suite",
+    "embeddedScreenshots": true,
+    "inlineAssets": true
+  },
+  "video": false
 }

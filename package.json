@@ -7,7 +7,8 @@
   "version": "1.0.0",
   "main": "cypress.config.js",
   "devDependencies": {
-    "cypress": "^11.2.0"
+    "cypress": "^11.2.0",
+    "cypress-mochawesome-reporter": "^3.2.3"
   },
   "scripts": {
     "test": "npm run start --record --spec \"cypress/e2e/multipleRoomcreation.cy.js/*\" -- --headed",
