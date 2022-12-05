@@ -12,7 +12,8 @@
   },
   "scripts": {
     "test": "npm run start --record --spec \"cypress/e2e/multipleRoomcreation.cy.js/*\" -- --headed",
-    "start": "cypress run"
+    "start": "cypress run",
+    "dev": "npm run start --browser chrome"
   },
   "repository": {
     "type": "git",
