@@ -26,7 +26,7 @@ describe("mySpec multiple room Creation", () => {
         // Condition to strictly check room type with below avalible
         // Bold room type text
         selected === "togee_card1"
-          ? expect($strong).to.have.text("Public room")
+          ? expect($strong).to.have.text("Public oom")
           : expect($strong).to.have.text("Private room");
       });
 

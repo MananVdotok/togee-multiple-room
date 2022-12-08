@@ -15,15 +15,5 @@
       "plugins": "allow",
       "cookies": "allow"
     }
-  },
-
-  "reporter": "cypress-mochawesome-reporter",
-  "reporterOptions": {
-    "reporterDir": "cypress/reports",
-    "charts": true,
-    "reportPageTitle": "my test suite",
-    "embeddedScreenshots": true,
-    "inlineAssets": true
-  },
-  "video": false
+  }
 }
