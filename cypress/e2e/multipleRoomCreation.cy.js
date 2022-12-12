@@ -117,6 +117,20 @@ describe("mySpec multiple room Creation", () => {
       for (let k = 0; k < viewerCount; k++) {
         openViewer();
       }
+
+      cy.scrollTo(0, -500, { duration: 2000 });
+      cy.scrollTo(0, 500, { duration: 4000 });
+      cy.scrollTo(0, -500, { duration: 8000 });
+      cy.scrollTo(0, 500, { duration: 4000 });
+      cy.scrollTo(0, -500, { duration: 8000 });
+      cy.scrollTo(0, 500, { duration: 4000 });
+      cy.scrollTo(0, -500, { duration: 8000 });
+      cy.scrollTo(0, 500, { duration: 4000 });
+      cy.scrollTo(0, -500, { duration: 8000 });
+      cy.scrollTo(0, 500, { duration: 4000 });
+      cy.scrollTo(0, -500, { duration: 8000 });
+      cy.scrollTo(0, 500, { duration: 4000 });
+      cy.scrollTo(0, -500, { duration: 8000 });
       cy.wait(eachRoomDuration);
       endRoom();
     }
