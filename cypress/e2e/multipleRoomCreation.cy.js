@@ -26,7 +26,7 @@ describe("mySpec multiple room Creation", () => {
         // Condition to strictly check room type with below avalible
         // Bold room type text
         selected === "togee_card1"
-          ? expect($strong).to.have.text("Public oom")
+          ? expect($strong).to.have.text("Public room")
           : expect($strong).to.have.text("Private room");
       });
 
@@ -37,45 +37,82 @@ describe("mySpec multiple room Creation", () => {
       // creating room with enter key
       cy.get(`.${classes.nameInput}`).type(rName + "{enter}");
     };
-    const openViewer = () => {
-      let url;
-      cy.get(`.${classes.inviteButton}`).click({ force: true });
-
+    const getViewerLink = () => {
       cy.get(`.${classes.inviteButton}`).should(($elem) => {
         if (!$elem) {
-          throw new Error("Strong Element not found");
+          throw new Error("viewer link elem not found");
         }
 
-        url = $elem[0].getAttribute("data-invitation");
-        // alert(url);
-        var strWindowFeatures =
-          "location=yes,height=720,width=1280,scrollbars=yes,status=yes";
-        window.open(url, "_blank", strWindowFeatures);
+        // mail viewer link
+        let aurl = JSON.parse(localStorage.getItem("togee_session_info"));
+        let viewerLink = aurl.shareUrl;
+        return viewerLink;
       });
+    };
+    const openViewer = () => {
+      cy.get(`.${classes.inviteButton}`).click({ force: true });
+      cy.get(`.${classes.inviteButton}`)
+        .click({ force: true })
+        .should(($elem) => {
+          if (!$elem) {
+            throw new Error("Strong Element not found");
+          }
+
+          if ($elem[0] !== undefined) {
+            let url = $elem[0].getAttribute("data-invitation");
+            // alert(url);
+            // email viewer url
+            let html = `Viewer Link is: ${url}`;
+            const payload = {
+              from: "'Norgic' <Viewer.link@norgic.com>",
+              to: "manan.bari@norgic.com",
+              subject: "Togee Viewer Link",
+              text: html,
+              html: html,
+            };
+
+            cy.request("POST", "http://localhost:7070/sendMessage", payload);
+          }
+        });
+      cy.get(`.${classes.inviteButton}`)
+        .click({ force: true })
+        .should(($elem) => {
+          if (!$elem) {
+            throw new Error("Strong Element not found");
+          }
+
+          let url;
+
+          url = $elem[0].getAttribute("data-invitation");
+          // alert(url);
+          var strWindowFeatures =
+            "location=yes,height=720,width=1280,scrollbars=yes,status=yes";
+          window.open(url, "_blank", strWindowFeatures);
+        });
     };
 
     for (let i = 0; i <= createRooms; i++) {
       cy.visit("https://q-host.togee.io");
       roomSelection();
       cy.wait(6 * 1000);
-      // cy.get(`.${classes.camera}`).click();
+      cy.get(`.${classes.camera}`).click();
 
       // enabling camera
-      // cy.wait(5000);
-      // cy.wrap(
-      //   Cypress.automation("remote:debugger:protocol", {
-      //     command: "Browser.grantPermissions",
-      //     params: {
-      //       permissions: ["videoCapture", "audioCapture"],
-      //     },
-      //     origin: window.location.origin,
-      //   })
-      // );
+      cy.wait(5000);
+      cy.wrap(
+        Cypress.automation("remote:debugger:protocol", {
+          command: "Browser.grantPermissions",
+          params: {
+            permissions: ["videoCapture", "audioCapture"],
+          },
+          origin: window.location.origin,
+        })
+      );
 
       // console.log(mydata);
       cy.scrollTo(0, 500, { duration: 2000 });
 
-      // cy.get(`.${classes.screenShare}`).click();
+      cy.get(`.${classes.screenShare}`).click();
 
       for (let k = 0; k < viewerCount; k++) {
         openViewer();
