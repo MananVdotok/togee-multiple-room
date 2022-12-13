@@ -19,6 +19,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       config = cypressBrowserPermissionsPlugin(on, config);
       require("cypress-mochawesome-reporter/plugin")(on);
+      // uncomment me for real media stream
       // implement node event listeners here
       on("before:browser:launch", (browser, launchOptions) => {
         args = launchOptions.args;
