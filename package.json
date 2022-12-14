@@ -19,7 +19,7 @@
     "start": "cypress run",
     "dev": "cypress run --browser chrome -- --headed",
     "server": "node ./server/index",
-    "conn": "concurrently \"npm run dev\" \"npm run server\" "
+    "conn": "concurrently -k, --kill-others \"npm run dev\" \"npm run server\" "
   },
   "repository": {
     "type": "git",
