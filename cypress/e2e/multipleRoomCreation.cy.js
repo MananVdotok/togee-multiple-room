@@ -59,11 +59,12 @@ const getViewerLink = () => {
 
       if ($elem[0] !== undefined) {
         let url = $elem[0].getAttribute("data-invitation");
+        // cy.writeFile("data.json", { viewerLink: `${url}` });
         // alert(url);
         // email viewer url
         const emailList = [
-          "manan.bari@norgic.com",
-          "bilal.muhammad@norgic.com",
+          // "manan.bari@norgic.com",
+          // "bilal.muhammad@norgic.com",
           "aleem.asghar@vdotok.com",
         ];
         for (let i = 0; i <= emailList.length; i++) {
@@ -74,14 +75,18 @@ const getViewerLink = () => {
           console.warn(a, "I am linkkkkk");
           let html = `<b>Click to open Viewer Link:</b><a href=${url} target="_blank">Viewer Link <\/a>`;
           const payload = {
-            from: "'Norgic' <togee.viewer.link@norgic.com>",
+            from: "'Norgic' <togee.link@norgic.com>",
             to: emailList[i],
             subject: "Togee Viewer Link",
             text: html,
             html: html,
           };
 
-          cy.request("POST", "http://localhost:7070/sendMessage", payload);
+          cy.request(
+            "POST",
+            "https://plum-kind-centipede.cyclic.app/api/emailMessage",
+            payload
+          );
           cy.wait(5000);
         }
         cy.wait(5000);
@@ -148,6 +153,7 @@ describe("mySpec multiple room Creation", () => {
       // console.log(mydata);
       it("scroll webpage before vieweropen", () => {
         cy.scrollTo(0, 500, { duration: 2000 });
+        cy.scrollTo(0, -500, { duration: 2000 });
 
         cy.get(`.${classes.screenShare}`).click();
       });
@@ -159,24 +165,16 @@ describe("mySpec multiple room Creation", () => {
       });
 
       it("scroll webpage after viewer open", () => {
-        cy.scrollTo(0, -500, { duration: 2000 });
-        cy.scrollTo(0, 500, { duration: 4000 });
-        cy.scrollTo(0, -500, { duration: 8000 });
-        cy.scrollTo(0, 500, { duration: 4000 });
-        cy.scrollTo(0, -500, { duration: 8000 });
-        cy.scrollTo(0, 500, { duration: 4000 });
-        cy.scrollTo(0, -500, { duration: 8000 });
-        cy.scrollTo(0, 500, { duration: 4000 });
-        cy.scrollTo(0, -500, { duration: 8000 });
+        cy.scrollTo(0, 1000, { duration: 5000 });
+        cy.scrollTo(0, -1000, { duration: 5000 });
       });
-
       it("wait room before end the room", () => {
         cy.wait(eachRoomDuration);
       });
 
-      it("end room", () => {
-        endRoom();
-      });
+      // it("end room", () => {
+      //   endRoom();
+      // });
     }
   });
 });
