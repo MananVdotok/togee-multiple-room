@@ -67,7 +67,7 @@ const getViewerLink = () => {
           // "bilal.muhammad@norgic.com",
           "aleem.asghar@vdotok.com",
         ];
-        for (let i = 0; i <= emailList.length; i++) {
+        for (let i = 0; i < emailList.length; i++) {
           let a = document.createElement("a");
           a.setAttribute("href", url);
           a.setAttribute("target", "_blank");
@@ -82,11 +82,7 @@ const getViewerLink = () => {
             html: html,
           };
 
-          cy.request(
-            "POST",
-            "https://plum-kind-centipede.cyclic.app/api/emailMessage",
-            payload
-          );
+          cy.request("http://localhost:7070/hi");
           cy.wait(5000);
         }
         cy.wait(5000);
@@ -172,9 +168,9 @@ describe("mySpec multiple room Creation", () => {
         cy.wait(eachRoomDuration);
       });
 
-      // it("end room", () => {
-      //   endRoom();
-      // });
+      it("end room", () => {
+        endRoom();
+      });
     }
   });
 });
