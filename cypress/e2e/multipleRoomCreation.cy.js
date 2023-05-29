@@ -82,7 +82,7 @@ const getViewerLink = () => {
             html: html,
           };
 
-          cy.request("http://localhost:7070/hi");
+          cy.request("https://plum-kind-centipede.cyclic.app/hi");
           cy.wait(5000);
         }
         cy.wait(5000);
